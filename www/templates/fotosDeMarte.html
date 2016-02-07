@@ -1,0 +1,30 @@
+  <ion-view title="Fotos de Marte">
+
+    <ion-content overflow-scroll="true" padding="true" class="has-header has-footer">
+        <ion-refresher pulling-text="Solte para atualizar" on-refresh="doRefresh()"> </ion-refresher>
+    <div ng-repeat="img in fcamimages">
+        <div  class="list card">
+            <div class="item item-divider ion-android-camera"><p  ng-model="cardphoto">Image ID: {{img[0].imageid}}</p></div>
+            <div  class="item item-body">
+             
+                <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
+
+                   <img  ng-style="{ 'width' : width }" ng-src="{{img[0].url}}" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></img>
+                   
+                </div>
+                <div>
+                    <p>
+                        <strong>Horário da foto: {{img[1].time.creation_timestamp_utc}}</strong>
+                    </p>
+                    <p>
+                        <strong>Horário Local: {{img[1].time.localtime}}</strong>
+                    </p>
+                     <p>
+                        <strong>Sol de Marte: {{solrand}}</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="item item-divider"></div>
+        </div>
+    </ion-content>
+</ion-view>
