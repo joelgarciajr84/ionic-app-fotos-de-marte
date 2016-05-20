@@ -1,4 +1,12 @@
 {
   "name": "fotosdemarteapp",
-  "app_id": "442908e8"
+  "app_id": "442908e8",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

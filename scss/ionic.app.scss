@@ -20,4 +20,26 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+.martecard{
+  background-color: rgba(255, 255, 255, 0.50) !important;
 
+}
+.marteitem{
+  background-color: rgba(255, 255, 255, 0) !important;
+
+}
+.marteitem p{
+  color:#ffffff;
+
+}
+
+.marteitemdiv{
+  width: 100%;
+  border:0px;
+  margin:0px;
+  padding:0px;
+}
+.marteitemdiv img{
+  width: 100%;
+  height: auto;
+}
