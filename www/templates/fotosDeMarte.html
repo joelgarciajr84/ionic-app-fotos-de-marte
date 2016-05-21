@@ -9,21 +9,26 @@
 
                 <div class="marteitemdiv">
 
-                   <img   ng-src="{{img[0].url}}" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></img>
+                   <img ng-model="urlfoto" ng-src="{{img[0].url}}" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></img>
 
                 </div>
-                <div>
-                    <p>
-                        <strong>Horário da foto: {{img[1].time.creation_timestamp_utc}}</strong>
+                <div class="fotometa">
+                    <p ng-model="datafoto">
+                        <strong>Data da foto: {{img[1].time.creation_timestamp_utc}}</strong>
                     </p>
                     <p>
-                        <strong>Horário Local: {{img[1].time.localtime}}</strong>
+                        <strong>Horário: {{img[1].time.localtime}}</strong>
                     </p>
                      <p>
                         <strong>Sol de Marte: {{solrand}}</strong>
                     </p>
                 </div>
-            </div>
+
+                  <button class="button button-block button-balanced item-icon-left" ng-click="Share('{{img[0].url}}', '{{img[1].time.creation_timestamp_utc}}','{{img[1].time.localtime}}', '{{solrand}}' )">
+                       <i class="icon ion-android-share-alt"></i>
+                        Compartilhar
+                </button>
+
 
         </div>
     </ion-content>

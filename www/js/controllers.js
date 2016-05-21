@@ -1,10 +1,23 @@
 angular.module('app.controllers', [])
-     
-.controller('fotosDeMarteCtrl', function($scope, $http) {
+
+.controller('fotosDeMarteCtrl', function($scope, $http,  $cordovaSocialSharing) {
+
+  $scope.Share=function($urlfoto, $datafoto, $horariofoto, $solmarte){
+    //console.log($urlfoto+''+$datafoto);
+    var message = "Foto de Marte #AppFotosDeMarte Data: "+$datafoto+" Horário: "+$horariofoto+" Sol de Marte: "+ $solmarte;
+    $cordovaSocialSharing
+     .share(message, 'Foto de Marte', $urlfoto, $urlfoto) // Share via native share sheet
+     .then(function(result) {
+       // Success!
+     }, function(err) {
+       // An error occured. Show a message to the user
+     });
+
+ }
 
   $scope.width = '80%';
      var solsurl = 'https://crossorigin.me/https://merpublic.s3.amazonaws.com/oss/mera/images/image_manifest.json';
-   
+
      $http.get(solsurl).then(function(resp){
 
        var sols = resp.data.sols;
@@ -15,12 +28,12 @@ angular.module('app.controllers', [])
           solsids.push(sols[i].sol);
          };
        };
-     
-     
+
+
        var solrand = solsids[Math.floor(Math.random() * solsids.length)];
       // console.log(solrand);
        var online = 'https://crossorigin.me/http://merpublic.s3.amazonaws.com/oss/mera/images/images_sol'+solrand+'.json';
-     
+
        $http.get(online).then(function(resp) {
          $scope.solrand = solrand;
          //cameras
@@ -30,7 +43,7 @@ angular.module('app.controllers', [])
           var fcam_images = resp.data.fcam_images;
           var imgs = '';
 
-         
+
 
            if (fcam_images.length > 0) {
 
@@ -48,14 +61,14 @@ angular.module('app.controllers', [])
 
               imgs = pcam_images;
           }
-         
+
          var marsimages =[];
          for (var i = 0; i < imgs.length; i++) {
           marsimages.push(imgs[i].images)
          };
-       
+
          $scope.fcamimages = marsimages;
-         
+
        })
      });
      $scope.doRefresh = function() {
@@ -64,15 +77,15 @@ angular.module('app.controllers', [])
        location.reload();
        })
        .finally(function() {
-      
+
        $scope.$broadcast('scroll.refreshComplete');
        });
      };
-$scope.share = function($title, $excerpt, $permalink, $scope) {
+/*$scope.share = function($title, $excerpt, $permalink, $scope) {
 
       window.plugins.socialsharing.share($title, $excerpt, null, $permalink);
 }
-
+*/
 
 })
 
@@ -80,7 +93,7 @@ $scope.share = function($title, $excerpt, $permalink, $scope) {
 
 
 })
-   
+
 .controller('hoversCtrl', function($scope) {
   $scope.width = '80%';
 
@@ -96,7 +109,7 @@ $scope.share = function($title, $excerpt, $permalink, $scope) {
    $scope.OtherShare=function(){
      window.plugins.socialsharing.share('APP das fotos de Marte', null, null, 'https://github.com/joelgarciajr84/ionic-app-fotos-de-marte');
   }
- 
+
 }])
 
 .controller('sobrectrl', function($scope) {
