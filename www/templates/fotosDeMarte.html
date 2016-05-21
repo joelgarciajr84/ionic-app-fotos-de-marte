@@ -1,6 +1,6 @@
   <ion-view title="Fotos de Marte">
 
-    <ion-content overflow-scroll="true" padding="true" class="has-header has-footer">
+    <ion-content lazy-scroll overflow-scroll="true" padding="true" class="has-header has-footer" >
         <ion-refresher pulling-text="Solte para atualizar" on-refresh="doRefresh()"> </ion-refresher>
     <div ng-repeat="img in fcamimages">
         <div class="list card martecard">
@@ -8,8 +8,7 @@
             <div class="marteitem item item-body">
 
                 <div class="marteitemdiv">
-
-                   <img ng-model="urlfoto" ng-src="{{img[0].url}}" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></img>
+                   <img id="fotomarte" image-lazy-src="{{img[0].url}}" ng-model="urlfoto" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></img>
 
                 </div>
                 <div class="fotometa">
@@ -23,11 +22,30 @@
                         <strong>Sol de Marte: {{solrand}}</strong>
                     </p>
                 </div>
+                <div align="center" class="sharebuttons">
 
-                  <button class="button button-block button-balanced item-icon-left" ng-click="Share('{{img[0].url}}', '{{img[1].time.creation_timestamp_utc}}','{{img[1].time.localtime}}', '{{solrand}}' )">
-                       <i class="icon ion-android-share-alt"></i>
-                        Compartilhar
+                  <br>
+
+                    <button class="button button-positive item-icon-left" ng-click="FacebookShare('{{img[0].url}}', '{{img[1].time.creation_timestamp_utc}}','{{img[1].time.localtime}}', '{{solrand}}' )">
+                         <i class="icon ion-social-facebook"></i>
+
+                  </button>
+
+                  <button class="button button-positive item-icon-left" ng-click="TwitterShare('{{img[0].url}}', '{{img[1].time.creation_timestamp_utc}}','{{img[1].time.localtime}}', '{{solrand}}' )">
+                       <i class="icon ion-social-twitter"></i>
+
                 </button>
+
+                <button class="button button-balanced item-icon-left" ng-click="WhatsAppShare('{{img[0].url}}', '{{img[1].time.creation_timestamp_utc}}','{{img[1].time.localtime}}', '{{solrand}}' )">
+                     <i class="icon ion-social-whatsapp"></i>
+
+              </button>
+
+              <button class="button button-positive item-icon-left" ng-click="InstaShare('{{img[0].url}}', '{{img[1].time.creation_timestamp_utc}}','{{img[1].time.localtime}}', '{{solrand}}' )">
+                   <i class="icon ion-social-instagram"></i>
+
+            </button>
+            </div>
 
 
         </div>

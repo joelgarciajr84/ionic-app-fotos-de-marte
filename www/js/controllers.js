@@ -2,21 +2,60 @@ angular.module('app.controllers', [])
 
 .controller('fotosDeMarteCtrl', function($scope, $http,  $cordovaSocialSharing) {
 
-  $scope.Share=function($urlfoto, $datafoto, $horariofoto, $solmarte){
-    //console.log($urlfoto+''+$datafoto);
+  $scope.FacebookShare=function($urlfoto, $datafoto, $horariofoto, $solmarte){
     var message = "Foto de Marte #AppFotosDeMarte Data: "+$datafoto+" Horário: "+$horariofoto+" Sol de Marte: "+ $solmarte;
+
+
     $cordovaSocialSharing
-     .share(message, 'Foto de Marte', $urlfoto, $urlfoto) // Share via native share sheet
+     .shareViaFacebook(message, $urlfoto, $urlfoto)
      .then(function(result) {
        // Success!
      }, function(err) {
-       // An error occured. Show a message to the user
+       // An error occurred. Show a message to the user
      });
-
  }
 
+ $scope.TwitterShare=function($urlfoto, $datafoto, $horariofoto, $solmarte){
+   var message = "Foto de Marte #AppFotosDeMarte Data: "+$datafoto+" Horário: "+$horariofoto+" Sol de Marte: "+ $solmarte;
+
+
+   $cordovaSocialSharing
+     .shareViaTwitter(message, $urlfoto, $urlfoto)
+     .then(function(result) {
+       // Success!
+     }, function(err) {
+       // An error occurred. Show a message to the user
+     });
+}
+
+$scope.WhatsAppShare=function($urlfoto, $datafoto, $horariofoto, $solmarte){
+  var message = "Foto de Marte #AppFotosDeMarte Data: "+$datafoto+" Horário: "+$horariofoto+" Sol de Marte: "+ $solmarte;
+
+
+  $cordovaSocialSharing
+   .shareViaWhatsApp(message, $urlfoto, $urlfoto)
+   .then(function(result) {
+     // Success!
+   }, function(err) {
+     // An error occurred. Show a message to the user
+   });
+}
+
+$scope.InstaShare=function($urlfoto, $datafoto, $horariofoto, $solmarte){
+  var message = "Foto de Marte #AppFotosDeMarte Data: "+$datafoto+" Horário: "+$horariofoto+" Sol de Marte: "+ $solmarte;
+
+
+  $cordovaSocialSharing
+    .shareVia('instagram', message, $urlfoto, $urlfoto)
+    .then(function(result) {
+      // Success!
+    }, function(err) {
+      // An error occurred. Show a message to the user
+    });
+}
+
   $scope.width = '80%';
-     var solsurl = 'https://crossorigin.me/https://merpublic.s3.amazonaws.com/oss/mera/images/image_manifest.json';
+     var solsurl = 'http://cors.io/?u=https://merpublic.s3.amazonaws.com/oss/mera/images/image_manifest.json';
 
      $http.get(solsurl).then(function(resp){
 
@@ -32,7 +71,7 @@ angular.module('app.controllers', [])
 
        var solrand = solsids[Math.floor(Math.random() * solsids.length)];
       // console.log(solrand);
-       var online = 'https://crossorigin.me/http://merpublic.s3.amazonaws.com/oss/mera/images/images_sol'+solrand+'.json';
+       var online = 'http://cors.io/?u=http://merpublic.s3.amazonaws.com/oss/mera/images/images_sol'+solrand+'.json';
 
        $http.get(online).then(function(resp) {
          $scope.solrand = solrand;
@@ -81,16 +120,9 @@ angular.module('app.controllers', [])
        $scope.$broadcast('scroll.refreshComplete');
        });
      };
-/*$scope.share = function($title, $excerpt, $permalink, $scope) {
-
-      window.plugins.socialsharing.share($title, $excerpt, null, $permalink);
-}
-*/
-
 })
 
-.controller('fotosCurtidasCtrl', function($scope) {
-
+.controller('sobrectrl', function($scope){
 
 })
 
@@ -111,8 +143,3 @@ angular.module('app.controllers', [])
   }
 
 }])
-
-.controller('sobrectrl', function($scope) {
-
-
-})
