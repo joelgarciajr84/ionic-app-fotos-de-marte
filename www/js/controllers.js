@@ -9,9 +9,9 @@ angular.module('app.controllers', [])
     $cordovaSocialSharing
      .shareViaFacebook(message, $urlfoto, $urlfoto)
      .then(function(result) {
-       // Success!
+
      }, function(err) {
-       // An error occurred. Show a message to the user
+
      });
  }
 
@@ -22,9 +22,9 @@ angular.module('app.controllers', [])
    $cordovaSocialSharing
      .shareViaTwitter(message, $urlfoto, $urlfoto)
      .then(function(result) {
-       // Success!
+
      }, function(err) {
-       // An error occurred. Show a message to the user
+
      });
 }
 
@@ -35,9 +35,9 @@ $scope.WhatsAppShare=function($urlfoto, $datafoto, $horariofoto, $solmarte){
   $cordovaSocialSharing
    .shareViaWhatsApp(message, $urlfoto, $urlfoto)
    .then(function(result) {
-     // Success!
+
    }, function(err) {
-     // An error occurred. Show a message to the user
+
    });
 }
 
@@ -48,9 +48,9 @@ $scope.InstaShare=function($urlfoto, $datafoto, $horariofoto, $solmarte){
   $cordovaSocialSharing
     .shareVia('instagram', message, $urlfoto, $urlfoto)
     .then(function(result) {
-      // Success!
+
     }, function(err) {
-      // An error occurred. Show a message to the user
+
     });
 }
 
@@ -61,7 +61,7 @@ $scope.InstaShare=function($urlfoto, $datafoto, $horariofoto, $solmarte){
 
        var sols = resp.data.sols;
        var solsids = [];
-       //console.log(sols);
+
        for (var i = 0; i < sols.length; i++) {
          if (sols[i].num_images != 0) {
           solsids.push(sols[i].sol);
@@ -70,7 +70,7 @@ $scope.InstaShare=function($urlfoto, $datafoto, $horariofoto, $solmarte){
 
 
        var solrand = solsids[Math.floor(Math.random() * solsids.length)];
-      // console.log(solrand);
+
        var online = 'http://cors.io/?u=http://merpublic.s3.amazonaws.com/oss/mera/images/images_sol'+solrand+'.json';
 
        $http.get(online).then(function(resp) {
@@ -133,13 +133,13 @@ $scope.InstaShare=function($urlfoto, $datafoto, $horariofoto, $solmarte){
 
 .controller('shareCtrl',['$scope',function($scope) {
    $scope.whatsappShare=function(){
-    window.plugins.socialsharing.shareViaWhatsApp('APP das fotos de Marte', null /* img */, "https://github.com/joelgarciajr84/ionic-app-fotos-de-marte" /* url */, null, function(errormsg){alert("Error: Cannot Share")});
+    window.plugins.socialsharing.shareViaWhatsApp('APP Fotos de Marte', null /* img */, "https://github.com/joelgarciajr84/ionic-app-fotos-de-marte" /* url */, null, function(errormsg){alert("Error: Cannot Share")});
   }
    $scope.twitterShare=function(){
-    window.plugins.socialsharing.shareViaTwitter('APP das fotos de Marte', null /* img */, 'https://github.com/joelgarciajr84/ionic-app-fotos-de-marte', null, function(errormsg){alert("Error: Cannot Share")});
+    window.plugins.socialsharing.shareViaTwitter('APP Fotos de Marte', null /* img */, 'https://github.com/joelgarciajr84/ionic-app-fotos-de-marte', null, function(errormsg){alert("Error: Cannot Share")});
   }
    $scope.OtherShare=function(){
-     window.plugins.socialsharing.share('APP das fotos de Marte', null, null, 'https://github.com/joelgarciajr84/ionic-app-fotos-de-marte');
+     window.plugins.socialsharing.share('APP Fotos de Marte', null, null, 'https://github.com/joelgarciajr84/ionic-app-fotos-de-marte');
   }
 
 }])
