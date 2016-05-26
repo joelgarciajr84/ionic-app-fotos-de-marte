@@ -1,14 +1,16 @@
-  <ion-view title="Fotos de Marte">
+  <ion-view  title="Fotos de Marte">
 
     <ion-content lazy-scroll overflow-scroll="true" padding="true" class="has-header has-footer" >
+
         <ion-refresher pulling-text="Solte para atualizar" on-refresh="doRefresh()"> </ion-refresher>
-    <div ng-repeat="img in fcamimages">
-        <div class="list card martecard">
+      
+    <div  ng-repeat="img in fcamimages">
+        <div class="list card martecard animated bounceInLeft">
 
             <div class="marteitem item item-body">
 
-                <div class="marteitemdiv">
-                   <img id="fotomarte" image-lazy-src="{{img[0].url}}" ng-model="urlfoto" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></img>
+                <div  class="marteitemdiv">
+                   <img class="animate-ripple motion" id="fotomarte" src="{{img[0].url}}" ng-model="urlfoto" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></img>
 
                 </div>
                 <div class="fotometa">

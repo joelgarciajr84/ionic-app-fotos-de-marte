@@ -43,10 +43,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   width: 100%;
   height: auto;
 }
-.fotometa p{
-  font-size: 16px;
-  color: #ffffff;
-  padding: 4px;
-  background-color: black;
+.fotometa p strong{
+  display: inline-block;
+    width: 100% !important;
+    font-size: 15px;
+    color: yellow;
+    padding: 4px;
+    background-color: #000000;
 
 }

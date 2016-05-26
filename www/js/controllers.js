@@ -1,8 +1,10 @@
 angular.module('app.controllers', [])
 
-.controller('fotosDeMarteCtrl', function($scope, $http,  $cordovaSocialSharing) {
+.controller('fotosDeMarteCtrl', function($scope,  $cordovaSocialSharing, ionicMaterialInk, ionicMaterialMotion, $http, getfotosService) {
+
 
   $scope.FacebookShare=function($urlfoto, $datafoto, $horariofoto, $solmarte){
+
     var message = "Foto de Marte #AppFotosDeMarte Data: "+$datafoto+" Horário: "+$horariofoto+" Sol de Marte: "+ $solmarte;
 
 
@@ -53,73 +55,13 @@ $scope.InstaShare=function($urlfoto, $datafoto, $horariofoto, $solmarte){
 
     });
 }
+// Set Motion
+ionicMaterialMotion.fadeSlideInRight();
 
-  $scope.width = '80%';
-     var solsurl = 'http://cors.io/?u=https://merpublic.s3.amazonaws.com/oss/mera/images/image_manifest.json';
-
-     $http.get(solsurl).then(function(resp){
-
-       var sols = resp.data.sols;
-       var solsids = [];
-
-       for (var i = 0; i < sols.length; i++) {
-         if (sols[i].num_images != 0) {
-          solsids.push(sols[i].sol);
-         };
-       };
+// Set Ink
+ionicMaterialInk.displayEffect();
 
 
-       var solrand = solsids[Math.floor(Math.random() * solsids.length)];
-
-       var online = 'http://cors.io/?u=http://merpublic.s3.amazonaws.com/oss/mera/images/images_sol'+solrand+'.json';
-
-       $http.get(online).then(function(resp) {
-         $scope.solrand = solrand;
-         //cameras
-          var pcam_images = resp.data.pcam_images;
-          var ncam_images = resp.data.ncam_images;
-          var rcam_images = resp.data.rcam_images;
-          var fcam_images = resp.data.fcam_images;
-          var imgs = '';
-
-
-
-           if (fcam_images.length > 0) {
-
-              imgs = fcam_images;
-
-           }else if (rcam_images.length > 0) {
-
-             imgs = rcam_images;
-
-           }else if(ncam_images.length > 0){
-
-              imgs = ncam_images;
-
-           }else if(pcam_images.length > 0){
-
-              imgs = pcam_images;
-          }
-
-         var marsimages =[];
-         for (var i = 0; i < imgs.length; i++) {
-          marsimages.push(imgs[i].images)
-         };
-
-         $scope.fcamimages = marsimages;
-
-       })
-     });
-     $scope.doRefresh = function() {
-       $http.get('/')
-       .success(function(newItems) {
-       location.reload();
-       })
-       .finally(function() {
-
-       $scope.$broadcast('scroll.refreshComplete');
-       });
-     };
 })
 
 .controller('sobrectrl', function($scope){
@@ -133,13 +75,13 @@ $scope.InstaShare=function($urlfoto, $datafoto, $horariofoto, $solmarte){
 
 .controller('shareCtrl',['$scope',function($scope) {
    $scope.whatsappShare=function(){
-    window.plugins.socialsharing.shareViaWhatsApp('APP Fotos de Marte', null /* img */, "https://github.com/joelgarciajr84/ionic-app-fotos-de-marte" /* url */, null, function(errormsg){alert("Error: Cannot Share")});
+    window.plugins.socialsharing.shareViaWhatsApp('APP Fotos de Marte', null /* img */, "http://migre.me/tWvVx" /* url */, null, function(errormsg){alert("Error: Cannot Share")});
   }
    $scope.twitterShare=function(){
-    window.plugins.socialsharing.shareViaTwitter('APP Fotos de Marte', null /* img */, 'https://github.com/joelgarciajr84/ionic-app-fotos-de-marte', null, function(errormsg){alert("Error: Cannot Share")});
+    window.plugins.socialsharing.shareViaTwitter('APP Fotos de Marte', null /* img */, 'http://migre.me/tWvVx', null, function(errormsg){alert("Error: Cannot Share")});
   }
    $scope.OtherShare=function(){
-     window.plugins.socialsharing.share('APP Fotos de Marte', null, null, 'https://github.com/joelgarciajr84/ionic-app-fotos-de-marte');
+     window.plugins.socialsharing.share('APP Fotos de Marte', null, null, 'http://migre.me/tWvVx');
   }
 
 }])

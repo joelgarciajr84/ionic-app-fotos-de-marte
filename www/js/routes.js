@@ -19,9 +19,9 @@ angular.module('app.routes', [])
       views: {
         'side-menu21': {
           templateUrl: 'templates/fotosDeMarte.html',
-          controller: 'fotosDeMarteCtrl'
+          controller: 'fotosDeMarteCtrl',
         }
-      }
+      },
     })
 
 
