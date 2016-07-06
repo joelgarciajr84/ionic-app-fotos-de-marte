@@ -66,6 +66,8 @@ angular.module('app.services', [])
       })
     });
   }
+
+
    var photos = givemePhotos();
 
       $scope.doRefresh = function() {
